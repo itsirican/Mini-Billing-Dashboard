@@ -196,6 +196,9 @@ main p {
     main {
         padding: 2em 1em 60px 1em;
     }
+    .header {
+        width: 100%;
+    }
     .container {
         border: none;
         padding: 0;

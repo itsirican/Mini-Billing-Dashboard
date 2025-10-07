@@ -1,19 +1,285 @@
+@push('styles')
+  <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endpush
 <x-layout title="dashboard">
-  <div class="container">
-    <h2>Dashboard</h2>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis porro iure quaerat aliquam! Optio dolorum
-      in eum provident, facilis error repellendus excepturi enim dolor deleniti adipisci consectetur doloremque, unde
-      maiores odit sapiente. Atque ab necessitatibus laboriosam consequatur eius similique, ex dolorum eum eaque sequi
-      id veritatis voluptates perspiciatis, cupiditate pariatur.</p>
-  </div>
-  <div class="container">
-    <h2>Example Heading</h2>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic aliquid corrupti, tenetur fuga magnam
-      necessitatibus blanditiis quod sint excepturi laborum esse alias labore molestias adipisci, nostrum corporis ex
-      maiores quis dolore quidem asperiores odio ad fugit eos! Delectus modi quas ipsa deleniti consequuntur nihil,
-      hic in ipsum exercitationem blanditiis natus, ex, expedita eos. Excepturi quidem harum hic nam magnam deserunt
-      illum quis dolorum eos ipsum ut natus sapiente sit, officia obcaecati assumenda tempore molestias? In fugiat
-      iure laboriosam quasi, eum suscipit, harum autem saepe ut, soluta aspernatur ducimus eos magnam quidem officiis.
-      Laboriosam nemo explicabo delectus, et quos vero cum?</p>
-  </div>
+  <div class="dashboard">
+    <div class="overview">
+      <h2>Overview</h2>
+      <div class="boxes">
+        <div class="box">
+          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
+          <div class="infos">
+            <p>1597</p>
+            <p>Total Custumers</p>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
+          <div class="infos">
+            <p>2000</p>
+            <p>Total Invoices</p>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
+          <div class="infos">
+            <p>500</p>
+            <p>Paid Invoices</p>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
+          <div class="infos">
+            <p>150</p>
+            <p>Unpaid Invoices</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="payments-invoices">
+      <div class="payments">
+        <h2>Payments</h2>
+        <div class="payments-chart">
+          <canvas id="myBarChart"></canvas>
+        </div>
+      </div>
+      <div class="invoices">
+        <h2>Invoices</h2>
+        <div style="width: 400px; height: 400px;">
+          <canvas id="myDoughnutChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="latest-invoices">
+      <h2>Recent Invoices List</h2>
+      <div class="table" id="customers_table">
+        <section class="table__body">
+          <table>
+            <thead>
+              <tr>
+                <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Customer <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Location <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Order Date <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Status <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Amount <span class="icon-arrow">&UpArrow;</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>
+                  <img src="{{asset('admin/upwork.jpg')}}" alt="" />Zinzu Chan Lee
+                </td>
+                <td>Seoul</td>
+                <td>17 Dec, 2022</td>
+                <td>
+                  <p class="status delivered">Delivered</p>
+                </td>
+                <td><strong> $128.90 </strong></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Jeet Saru</td>
+                <td>Kathmandu</td>
+                <td>27 Aug, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$5350.50</strong></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Sonal Gharti</td>
+                <td>Tokyo</td>
+                <td>14 Mar, 2023</td>
+                <td>
+                  <p class="status shipped">Shipped</p>
+                </td>
+                <td><strong>$210.40</strong></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
+                <td>New Delhi</td>
+                <td>25 May, 2023</td>
+                <td>
+                  <p class="status delivered">Delivered</p>
+                </td>
+                <td><strong>$149.70</strong></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Sarita Limbu</td>
+                <td>Paris</td>
+                <td>23 Apr, 2023</td>
+                <td>
+                  <p class="status pending">Pending</p>
+                </td>
+                <td><strong>$399.99</strong></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alex Gonley</td>
+                <td>London</td>
+                <td>23 Apr, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$399.99</strong></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Jeet Saru</td>
+                <td>New York</td>
+                <td>20 May, 2023</td>
+                <td>
+                  <p class="status delivered">Delivered</p>
+                </td>
+                <td><strong>$399.99</strong></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>
+                  <img src="{{asset('admin/upwork.jpg')}}" alt="" /> Aayat Ali Khan
+                </td>
+                <td>Islamabad</td>
+                <td>30 Feb, 2023</td>
+                <td>
+                  <p class="status pending">Pending</p>
+                </td>
+                <td><strong>$149.70</strong></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
+                <td>Dhaka</td>
+                <td>22 Dec, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$249.99</strong></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
+                <td>Dhaka</td>
+                <td>22 Dec, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$249.99</strong></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
+                <td>Dhaka</td>
+                <td>22 Dec, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$249.99</strong></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
+                <td>Dhaka</td>
+                <td>22 Dec, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$249.99</strong></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
+                <td>Dhaka</td>
+                <td>22 Dec, 2023</td>
+                <td>
+                  <p class="status cancelled">Cancelled</p>
+                </td>
+                <td><strong>$249.99</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+
+    @push('script')
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      {{-- Payments Chats --}}
+      <script>
+        const ctx = document.getElementById('myBarChart').getContext('2d');
+        const myBarChart = new Chart(ctx, {
+          type: 'bar', // Bar chart
+          data: {
+            labels: ['January',
+              'February',
+              'March',
+              'April',
+              'May',
+              'June',
+              'July',
+              'August',
+              'September',
+              'October',
+              'November',
+              'December'], // X-axis labels
+            datasets: [{
+              label: 'Sales',
+              data: [12, 19, 3, 5, 2, 8, 11, 9, 14, 7, 10, 6], // Y-axis data
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1,
+              barPercentage: 0.3,
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+
+      {{-- Invoices Charts --}}
+      <script>
+        const doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
+        const myDoughnutChart = new Chart(doughnutCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+            datasets: [{
+              label: 'Votes',
+              data: [12, 19, 3, 5, 2],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+              ],
+              borderColor: '#fff',
+              borderWidth: 2,
+              hoverOffset: 15 // makes it pop out when hovered
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom' },
+              title: {
+                display: true,
+                text: 'Doughnut Chart Example'
+              }
+            },
+            cutout: '70%' // controls the size of the doughnut hole
+          }
+        });
+      </script>
+    @endpush
 </x-layout>
