@@ -33,6 +33,10 @@ Route::middleware('auth:admin')->group(function () {
 Route::middleware('guest:admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AdminAuthController::class, 'login']);
+    
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
 });
 
 

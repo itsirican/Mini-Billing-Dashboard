@@ -1,61 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## **Project Overview**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An admin dashboard built with **Laravel** that allows business owners to manage invoices.
 
-## About Laravel
+**Features:**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   Admin authentication with profile picture.
+-   Manage Customers (Create, Read, Update, Delete) with profile pictures.
+-   Manage Invoices (Create, Read, Update, Delete) with status (Paid, Unpaid, Pending).
+-   Dashboard with stats overview, charts, and latest records.
+-   Pagination for customers and invoices tables.
+-   Simple and clean UI using Blade templates and optional Bootstrap.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## **Tech Stack**
 
-## Learning Laravel
+-   **Backend:** Laravel 10, PHP 8+
+-   **Database:** MySQL
+-   **Frontend:** Blade Templates, Bootstrap 5
+-   **Other:** Laravel Eloquent, Factories & Seeders for fake data
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## **Setup Instructions**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **1️⃣ Clone the repository**
 
-## Laravel Sponsors
+### **2️⃣ Install dependencies**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+```
 
-### Premium Partners
+### **3️⃣ Set up environment variables**
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+-   Copy `.env.example` to `.env`:
 
-## Contributing
+```bash
+cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   Configure the database:
 
-## Code of Conduct
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mini_billing
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### **IMPORTANT Create Database mini_billing**
 
-## Security Vulnerabilities
+Here’s a **clear, step-by-step version** for PowerShell, keeping the password empty:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### **Step 1: Open PowerShell**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Make sure MySQL is installed and the path is set (or navigate to MySQL folder, e.g., `C:\xampp\mysql\bin`).
+
+---
+
+### **Step 2: Log in to MySQL with an empty password**
+
+```powershell
+mysql -u root -p
+```
+
+-   When prompted for a password, just press **Enter** (leave it empty).
+
+---
+
+### **Step 3: Create the database**
+
+At the MySQL prompt, run:
+
+```sql
+CREATE DATABASE mini_billing;
+```
+
+-   You should see: `Query OK, 1 row affected`
+
+---
+
+### **Step 4: Exit MySQL**
+
+```sql
+exit;
+```
+
+---
+
+Now the `mini_billing` database exists, ready for Laravel migrations.
+
+---
+
+If you want, I can write the **next commands to run Laravel migrations and seed all tables safely**, so everything (admins, customers, invoices) is set up. Do you want me to do that?
+
+### **4️⃣ Generate application key**
+
+```bash
+php artisan key:generate
+```
+
+### **5️⃣ Run migrations & seeders**
+
+```bash
+php artisan migrate --seed
+```
+
+> This will create all tables and add a default admin user:
+>
+> **Email:** `admin@example.com` > **Password:** `password123`
+
+---
+
+### **6️⃣ Link storage (for customer/admin pictures)**
+
+```bash
+php artisan storage:link
+```
+
+---
+
+### **7️⃣ Run the application**
+
+```bash
+php artisan serve
+```
+
+-   Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+-   Admin login: [http://127.0.0.1:8000/admin/login](http://127.0.0.1:8000/admin/login)
+
+---
+
+## **Folder Structure Highlights**
+
+-   `app/Models/` → Admin, Customer, Invoice models
+-   `app/Http/Controllers/` → AdminAuthController, CustomerController, InvoiceController, DashboardController
+-   `database/migrations/` → Table structure
+-   `database/seeders/` → Default admin, fake customers & invoices
+-   `resources/views/` → Blade templates for dashboard, customers, invoices
+
+---
+
+## **Admin Credentials**
+
+-   **Email:** [admin@example.com](mailto:admin@example.com)
+-   **Password:** password123
+
+---
