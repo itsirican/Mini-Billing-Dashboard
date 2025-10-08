@@ -1,19 +1,19 @@
-.dashboard {
+.custumers {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.dashboard .overview {
+.custumers .overview {
     background-color: #242137;
     padding: 30px;
 }
 
-.dashboard .overview h2 {
+.custumers .overview h2 {
     margin-bottom: 30px;
 }
 
-.dashboard .overview .boxes {
+.custumers .overview .boxes {
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: space-between;
@@ -21,39 +21,11 @@
     gap: 20px;
 }
 
-/* start payments-invoices */
-.dashboard .payments-invoices {
-    display: flex;
-    gap: 20px;
-}
-.dashboard .payments-invoices .payments {
-    flex: 1;
-}
-.dashboard .payments-invoices h2 {
-    margin-bottom: 30px;
-}
-.dashboard .payments-invoices div {
-    background-color: #242137;
-    padding: 30px;
-}
-.dashboard .payments-invoices .payments-chart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    width: 100%;
-}
-.dashboard .payments-invoices .payments-chart canvas {
-    width: 100%;
-}
-
 /* start recent invoices table */
 /* .latest-invoices {
     width: 100%;
 } */
-.latest-invoices h2 {
-    margin-bottom: 30px;
-}
+
 div.table {
     width: 100%;
     background-color: #242137;
@@ -110,7 +82,7 @@ div.table {
 }
 
 .table__body {
-    max-height: 350px;
+    /* max-height: 900px; */
     /* width: 95%;
     max-height: calc(89% - 1.6rem); */
     /* background-color: #1b1831; */
@@ -167,6 +139,10 @@ thead th {
     background-color: #3b365c;
     cursor: pointer;
     text-transform: capitalize;
+}
+
+tbody {
+    max-height: 600px;
 }
 
 tbody tr:nth-child(even) {
@@ -259,4 +235,27 @@ thead th:hover span.icon-arrow {
 
 thead th:hover {
     color: #6c00bd;
+}
+
+.custumers .custumers-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.custumers .create-btn {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0d7f59;
+    width: fit-content;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-left: auto;
+}
+.custumers .create-btn:hover {
+    background-color: #17a878;
 }

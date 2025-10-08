@@ -6,34 +6,10 @@
     <div class="overview">
       <h2>Overview</h2>
       <div class="boxes">
-        <div class="box">
-          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
-          <div class="infos">
-            <p>1597</p>
-            <p>Total Custumers</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
-          <div class="infos">
-            <p>2000</p>
-            <p>Total Invoices</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
-          <div class="infos">
-            <p>500</p>
-            <p>Paid Invoices</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{{asset('admin/upwork.jpg')}}" alt="total">
-          <div class="infos">
-            <p>150</p>
-            <p>Unpaid Invoices</p>
-          </div>
-        </div>
+        <x-card number="1597" title="Total Custumers" src="admin/upwork.jpg" />
+        <x-card number="1597" title="Total Invoices" src="admin/upwork.jpg" />
+        <x-card number="500" title="Paid Invoices" src="admin/upwork.jpg" />
+        <x-card number="150" title="Unpaid Invoices" src="admin/upwork.jpg" />
       </div>
     </div>
     <div class="payments-invoices">
@@ -98,7 +74,7 @@
                 </td>
                 <td><strong>$210.40</strong></td>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td>4</td>
                 <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
                 <td>New Delhi</td>
@@ -199,87 +175,87 @@
                   <p class="status cancelled">Cancelled</p>
                 </td>
                 <td><strong>$249.99</strong></td>
-              </tr>
+              </tr> --}}
             </tbody>
           </table>
         </section>
       </div>
     </div>
-
-    @push('script')
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      {{-- Payments Chats --}}
-      <script>
-        const ctx = document.getElementById('myBarChart').getContext('2d');
-        const myBarChart = new Chart(ctx, {
-          type: 'bar', // Bar chart
-          data: {
-            labels: ['January',
-              'February',
-              'March',
-              'April',
-              'May',
-              'June',
-              'July',
-              'August',
-              'September',
-              'October',
-              'November',
-              'December'], // X-axis labels
-            datasets: [{
-              label: 'Sales',
-              data: [12, 19, 3, 5, 2, 8, 11, 9, 14, 7, 10, 6], // Y-axis data
-              backgroundColor: 'rgba(54, 162, 235, 0.5)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1,
-              barPercentage: 0.3,
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+  </div>
+  @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- Payments Chats --}}
+    <script>
+      const ctx = document.getElementById('myBarChart').getContext('2d');
+      const myBarChart = new Chart(ctx, {
+        type: 'bar', // Bar chart
+        data: {
+          labels: ['January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'], // X-axis labels
+          datasets: [{
+            label: 'Sales',
+            data: [12, 19, 3, 5, 2, 8, 11, 9, 14, 7, 10, 6], // Y-axis data
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            barPercentage: 0.3,
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
             }
           }
-        });
-      </script>
+        }
+      });
+    </script>
 
-      {{-- Invoices Charts --}}
-      <script>
-        const doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
-        const myDoughnutChart = new Chart(doughnutCtx, {
-          type: 'doughnut',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-            datasets: [{
-              label: 'Votes',
-              data: [12, 19, 3, 5, 2],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)'
-              ],
-              borderColor: '#fff',
-              borderWidth: 2,
-              hoverOffset: 15 // makes it pop out when hovered
-            }]
+    {{-- Invoices Charts --}}
+    <script>
+      const doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
+      const myDoughnutChart = new Chart(doughnutCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+          datasets: [{
+            label: 'Votes',
+            data: [12, 19, 3, 5, 2],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)'
+            ],
+            borderColor: '#fff',
+            borderWidth: 2,
+            hoverOffset: 15 // makes it pop out when hovered
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: {
+              display: true,
+              text: 'Doughnut Chart Example'
+            }
           },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { position: 'bottom' },
-              title: {
-                display: true,
-                text: 'Doughnut Chart Example'
-              }
-            },
-            cutout: '70%' // controls the size of the doughnut hole
-          }
-        });
-      </script>
-    @endpush
+          cutout: '70%' // controls the size of the doughnut hole
+        }
+      });
+    </script>
+  @endpush
 </x-layout>

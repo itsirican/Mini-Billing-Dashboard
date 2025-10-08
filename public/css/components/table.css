@@ -1,59 +1,3 @@
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.dashboard .overview {
-    background-color: #242137;
-    padding: 30px;
-}
-
-.dashboard .overview h2 {
-    margin-bottom: 30px;
-}
-
-.dashboard .overview .boxes {
-    display: flex;
-    /* flex-wrap: wrap; */
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-/* start payments-invoices */
-.dashboard .payments-invoices {
-    display: flex;
-    gap: 20px;
-}
-.dashboard .payments-invoices .payments {
-    flex: 1;
-}
-.dashboard .payments-invoices h2 {
-    margin-bottom: 30px;
-}
-.dashboard .payments-invoices div {
-    background-color: #242137;
-    padding: 30px;
-}
-.dashboard .payments-invoices .payments-chart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    width: 100%;
-}
-.dashboard .payments-invoices .payments-chart canvas {
-    width: 100%;
-}
-
-/* start recent invoices table */
-/* .latest-invoices {
-    width: 100%;
-} */
-.latest-invoices h2 {
-    margin-bottom: 30px;
-}
 div.table {
     width: 100%;
     background-color: #242137;
@@ -110,7 +54,6 @@ div.table {
 }
 
 .table__body {
-    max-height: 350px;
     /* width: 95%;
     max-height: calc(89% - 1.6rem); */
     /* background-color: #1b1831; */

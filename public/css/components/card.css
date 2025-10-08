@@ -1,0 +1,37 @@
+.box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #3a3653;
+    width: 100%;
+    padding: 30px 20px;
+}
+
+.box img {
+    max-width: 100%;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.box .infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.box .infos p {
+    margin: 0;
+    color: #fff;
+}
+
+.box .infos p:nth-child(1) {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.box .infos p:nth-child(2) {
+    font-size: 14px;
+    font-weight: 600;
+    color: #bdbdbd;
+}
