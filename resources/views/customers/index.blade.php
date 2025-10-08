@@ -1,7 +1,13 @@
 @push('styles')
   <link rel="stylesheet" href="{{ asset('css/custumers.css') }}">
 @endpush
-<x-layout title="custumers">
+<x-layout title="customers">
+  @if (session('success'))
+    <div class="message">
+      <strong class="font-bold">Success!</strong>
+      <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+  @endif
   <div class="custumers">
     <div class="overview">
       <h2>Overview</h2>
@@ -15,7 +21,7 @@
     <div class="custumers-list">
       <div class="custumers-box">
         <h2>Custumers List</h2>
-        <a href="{{route('customer.create')}}" class="create-btn">New Custumer</a>
+        <a href="{{route('customers.create')}}" class="create-btn">New Custumer</a>
       </div>
       <div class="table" id="customers_table">
         <section class="table__body">
@@ -36,13 +42,23 @@
                 <tr>
                   <td>{{ $customer->id }}</td>
                   <td>
-                    <img src="{{ $customer->picture }}" alt="" />{{ $customer->name }}
+                    <img src="{{asset('storage/' . $customer->picture)}}" alt="" />{{ $customer->name }}
                   </td>
                   <td>{{ $customer->email }}</td>
                   <td>{{Str::limit($customer->address, 10)}}</td>
                   <td>
-                    <a href="#" class="table-btn edit">Edit</a>
-                    <a href="#" class="table-btn danger">Delete</a>
+                    <form style="display: inline;" action="{{route('customers.edit', $customer->id)}}" method="GET">
+                      <button class="table-btn edit">Edit</button>
+                    </form>
+                    <form action="{{ route('customers.destroy', $customer->id) }}" method="POST"
+                      style="display:inline-block;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="table-btn danger"
+                        onclick="return confirm('Are you sure you want to delete this customer?');">
+                        Delete
+                      </button>
+                    </form>
                   </td>
                 </tr>
               @endforeach

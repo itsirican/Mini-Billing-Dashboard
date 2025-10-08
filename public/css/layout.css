@@ -266,3 +266,10 @@ main p {
         }
     }
 }
+
+main .message {
+    margin-bottom: 20px;
+    background-color: #25bd46;
+    padding: 15px 20px;
+    border-radius: 5px;
+}

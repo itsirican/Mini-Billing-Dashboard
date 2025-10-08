@@ -26,10 +26,15 @@ class CustomerController extends Controller
             })->count(),
         ];
 
-        return view('customers', [
+        return view('customers.index', [
         'customers' => $customers,
         'stats' => $stats,
     ]);
+    }
+
+    public function create()
+    {
+        return view('customers.create');
     }
 
     /**
@@ -37,7 +42,21 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:customers,email',
+            'address' => 'required|string|max:255',
+            'picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Handle picture upload
+        if ($request->hasFile('picture')) {
+            $path = $request->file('picture')->store('customers', 'public');
+            $validated['picture'] = $path;
+        }
+        Customer::create($validated);
+
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully!');
     }
 
     /**
@@ -51,16 +70,49 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function edit(Customer $customer)
+{
+    return view('customers.edit', compact('customer'));
+}
+
+    public function update(Request $request, Customer $customer)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:customers,email,' . $customer->id,
+            'address' => 'required|string|max:255',
+            'picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Handle new picture upload (simple store method)
+        if ($request->hasFile('picture')) {
+            // Optional: delete old picture manually if exists
+            if ($customer->picture && file_exists(public_path('storage/' . $customer->picture))) {
+                unlink(public_path('storage/' . $customer->picture));
+            }
+
+            // Store new picture
+            $path = $request->file('picture')->store('customers', 'public');
+            $validated['picture'] = $path;
+        }
+
+        $customer->update($validated);
+
+        return redirect()->route('customers.index')->with('success', 'Customer updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Customer $customer)
     {
-        //
+        // Optional: delete the picture file if exists
+        if ($customer->picture && file_exists(public_path('storage/' . $customer->picture))) {
+            unlink(public_path('storage/' . $customer->picture));
+        }
+
+        $customer->delete();
+
+        return redirect()->route('customers.index')->with('success', 'Customer deleted successfully!');
     }
 }

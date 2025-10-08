@@ -269,6 +269,7 @@ thead th:hover {
     border-radius: 10px;
     font-weight: 600;
     transition: 0.3s;
+    cursor: pointer;
 }
 .custumers table tbody td .edit {
     background-color: #0d7f59;

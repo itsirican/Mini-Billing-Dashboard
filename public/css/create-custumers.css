@@ -25,11 +25,11 @@ form {
 }
 
 form .create-btn {
-    display: block;
-    text-decoration: none;
+    outline: none;
+    border: none;
     color: #fff;
     background-color: #0d7f59;
-    width: 50%;
+    width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +37,7 @@ form .create-btn {
     border-radius: 10px;
     font-weight: 600;
     transition: 0.3s;
+    cursor: pointer;
 }
 form .create-btn:hover {
     background-color: #17a878;
