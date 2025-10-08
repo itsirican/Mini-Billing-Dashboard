@@ -251,6 +251,7 @@ thead th:hover {
     font-weight: 600;
     transition: 0.3s;
     margin-left: auto;
+    cursor: pointer;
 }
 .invoices .create-btn:hover {
     background-color: #17a878;
@@ -265,6 +266,7 @@ thead th:hover {
     border-radius: 10px;
     font-weight: 600;
     transition: 0.3s;
+    cursor: pointer;
 }
 .invoices table tbody td .edit {
     background-color: #0d7f59;

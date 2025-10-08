@@ -2,12 +2,6 @@
   <link rel="stylesheet" href="{{ asset('css/custumers.css') }}">
 @endpush
 <x-layout title="customers">
-  @if (session('success'))
-    <div class="message">
-      <strong class="font-bold">Success!</strong>
-      <span class="block sm:inline">{{ session('success') }}</span>
-    </div>
-  @endif
   <div class="custumers">
     <div class="overview">
       <h2>Overview</h2>

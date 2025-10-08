@@ -4,8 +4,8 @@
 <x-layout title="custumers">
   <h2>Add New Custumer</h2>
   @if ($errors->any())
-    <div class="alert alert-danger">
-      <ul class="mb-0">
+    <div>
+      <ul>
         @foreach ($errors->all() as $error)
           <li>{{ $error }}</li>
         @endforeach

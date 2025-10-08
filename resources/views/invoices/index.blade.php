@@ -14,7 +14,7 @@
     <div class="invoices-list">
       <div class="invoices-box">
         <h2>Invoices List</h2>
-        <a href="{{route('invoice.create')}}" class="create-btn">New Invoice</a>
+        <a href="{{route('invoices.create')}}" class="create-btn">New Invoice</a>
       </div>
       <div class="table" id="customers_table">
         <section class="table__body">
@@ -36,7 +36,7 @@
                   <td>{{$invoice->id}}</td>
                   <td>{{$invoice->title}}</td>
                   <td>
-                    <img src="{{ $invoice->customer->picture}}" alt="" />{{ $invoice->customer->name}}
+                    <img src="{{asset('storage/' . $invoice->customer->picture)}}" alt="" />{{ $invoice->customer->name}}
                   </td>
                   <td><strong> ${{ number_format($invoice->amount, 2) }} </strong></td>
                   <td>
@@ -44,8 +44,18 @@
                   </td>
                   <td>{{ $invoice->created_at->format('Y-m-d') }}</td>
                   <td>
-                    <a href="#" class="table-btn edit">Edit</a>
-                    <a href="#" class="table-btn danger">Delete</a>
+                    <form style="display: inline;" action="{{route('invoices.edit', $invoice->id)}}" method="GET">
+                      <button class="table-btn edit">Edit</button>
+                    </form>
+                    <form action="{{ route('invoices.destroy', $invoice->id) }}" method="POST"
+                      style="display:inline-block;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="table-btn danger"
+                        onclick="return confirm('Are you sure you want to delete this invoice?');">
+                        Delete
+                      </button>
+                    </form>
                   </td>
                 </tr>
               @endforeach
