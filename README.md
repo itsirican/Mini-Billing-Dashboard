@@ -130,7 +130,7 @@ php artisan serve
 ```
 
 -   Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)
--   Admin login: [http://127.0.0.1:8000/admin/login](http://127.0.0.1:8000/admin/login)
+-   Admin login: [http://127.0.0.1:8000/login](http://127.0.0.1:8000/login)
 
 ---
 
