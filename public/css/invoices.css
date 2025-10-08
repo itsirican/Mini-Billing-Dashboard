@@ -188,22 +188,18 @@ tbody tr.hide td img {
     text-align: center;
 }
 
-.status.delivered {
+.status.paid {
     background-color: #86e49d;
     color: #006b21;
 }
 
-.status.cancelled {
+.status.unpaid {
     background-color: #d893a3;
     color: #b30021;
 }
 
 .status.pending {
     background-color: #ebc474;
-}
-
-.status.shipped {
-    background-color: #6fcaea;
 }
 
 @media (max-width: 1000px) {

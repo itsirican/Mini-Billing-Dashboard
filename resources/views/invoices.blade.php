@@ -6,10 +6,9 @@
     <div class="overview">
       <h2>Overview</h2>
       <div class="boxes">
-        <x-card number="1597" title="Total Invoices" src="admin/upwork.jpg" />
-        <x-card number="1597" title="Total Invoices" src="admin/upwork.jpg" />
-        <x-card number="1597" title="Total Invoices" src="admin/upwork.jpg" />
-        <x-card number="1597" title="Total Invoices" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['total_invoices']" title="Total Invoices" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['new_invoices']" title="New Invoices" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['pending_invoices']" title="Pending Invoices" src="admin/upwork.jpg" />
       </div>
     </div>
     <div class="invoices-list">
@@ -32,22 +31,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Invoice Title</td>
-                <td>
-                  <img src="{{asset('admin/upwork.jpg')}}" alt="" />Zinzu Chan Lee
-                </td>
-                <td><strong> $128.90 </strong></td>
-                <td>
-                  <p class="status delivered">Delivered</p>
-                </td>
-                <td>27 Aug, 2023</td>
-                <td>
-                  <a href="#" class="table-btn edit">Edit</a>
-                  <a href="#" class="table-btn danger">Delete</a>
-                </td>
-              </tr>
+              @foreach ($invoices as $invoice)
+                <tr>
+                  <td>{{$invoice->id}}</td>
+                  <td>{{$invoice->title}}</td>
+                  <td>
+                    <img src="{{ $invoice->customer->picture}}" alt="" />{{ $invoice->customer->name}}
+                  </td>
+                  <td><strong> ${{ number_format($invoice->amount, 2) }} </strong></td>
+                  <td>
+                    <p class="status {{$invoice->status}}">{{ ucfirst($invoice->status) }}</p>
+                  </td>
+                  <td>{{ $invoice->created_at->format('Y-m-d') }}</td>
+                  <td>
+                    <a href="#" class="table-btn edit">Edit</a>
+                    <a href="#" class="table-btn danger">Delete</a>
+                  </td>
+                </tr>
+              @endforeach
               {{-- <tr>
                 <td>2</td>
                 <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Jeet Saru</td>

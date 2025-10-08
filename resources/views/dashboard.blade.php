@@ -6,10 +6,10 @@
     <div class="overview">
       <h2>Overview</h2>
       <div class="boxes">
-        <x-card number="1597" title="Total Custumers" src="admin/upwork.jpg" />
-        <x-card number="1597" title="Total Invoices" src="admin/upwork.jpg" />
-        <x-card number="500" title="Paid Invoices" src="admin/upwork.jpg" />
-        <x-card number="150" title="Unpaid Invoices" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['total_customers']" title="Total Custumers" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['total_invoices']" title="Total Invoices" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['paid_invoices']" title="Paid Invoices" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['unpaid_invoices']" title="Unpaid Invoices" src="admin/upwork.jpg" />
       </div>
     </div>
     <div class="payments-invoices">
@@ -34,27 +34,34 @@
             <thead>
               <tr>
                 <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Invoice Titile <span class="icon-arrow">&UpArrow;</span></th>
                 <th>Customer <span class="icon-arrow">&UpArrow;</span></th>
-                <th>Location <span class="icon-arrow">&UpArrow;</span></th>
-                <th>Order Date <span class="icon-arrow">&UpArrow;</span></th>
-                <th>Status <span class="icon-arrow">&UpArrow;</span></th>
                 <th>Amount <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Status <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Date <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Actions <span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>
-                  <img src="{{asset('admin/upwork.jpg')}}" alt="" />Zinzu Chan Lee
-                </td>
-                <td>Seoul</td>
-                <td>17 Dec, 2022</td>
-                <td>
-                  <p class="status delivered">Delivered</p>
-                </td>
-                <td><strong> $128.90 </strong></td>
-              </tr>
-              <tr>
+              @foreach ($recentInvoices as $invoice)
+                <tr>
+                  <td>{{$invoice->id}}</td>
+                  <td>{{$invoice->title}}</td>
+                  <td>
+                    <img src="{{ $invoice->customer->picture}}" alt="" />{{ $invoice->customer->name}}
+                  </td>
+                  <td><strong> ${{ number_format($invoice->amount, 2) }} </strong></td>
+                  <td>
+                    <p class="status {{$invoice->status}}">{{ ucfirst($invoice->status) }}</p>
+                  </td>
+                  <td>{{ $invoice->created_at->format('Y-m-d') }}</td>
+                  <td>
+                    <a href="#" class="table-btn edit">Edit</a>
+                    <a href="#" class="table-btn danger">Delete</a>
+                  </td>
+                </tr>
+              @endforeach
+              {{-- <tr>
                 <td>2</td>
                 <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Jeet Saru</td>
                 <td>Kathmandu</td>
@@ -74,7 +81,7 @@
                 </td>
                 <td><strong>$210.40</strong></td>
               </tr>
-              {{-- <tr>
+              <tr>
                 <td>4</td>
                 <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Alson GC</td>
                 <td>New Delhi</td>
@@ -190,26 +197,16 @@
       const myBarChart = new Chart(ctx, {
         type: 'bar', // Bar chart
         data: {
-          labels: ['January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'], // X-axis labels
+          labels: @json($last12Months->pluck('month')),
           datasets: [{
-            label: 'Sales',
-            data: [12, 19, 3, 5, 2, 8, 11, 9, 14, 7, 10, 6], // Y-axis data
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            label: 'Payments',
+            data: @json($last12Months->pluck('total_paid')),
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 1,
             barPercentage: 0.3,
           }]
+
         },
         options: {
           responsive: true,
@@ -227,21 +224,12 @@
       const doughnutCtx = document.getElementById('myDoughnutChart').getContext('2d');
       const myDoughnutChart = new Chart(doughnutCtx, {
         type: 'doughnut',
+
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+          labels: Object.keys(@json($chartData['invoice_status'])),
           datasets: [{
-            label: 'Votes',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)'
-            ],
-            borderColor: '#fff',
-            borderWidth: 2,
-            hoverOffset: 15 // makes it pop out when hovered
+            data: Object.values(@json($chartData['invoice_status'])),
+            backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
           }]
         },
         options: {

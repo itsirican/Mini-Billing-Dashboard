@@ -260,3 +260,41 @@ thead th:hover span.icon-arrow {
 thead th:hover {
     color: #6c00bd;
 }
+.create-btn {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #0d7f59;
+    width: fit-content;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-left: auto;
+}
+.create-btn:hover {
+    background-color: #17a878;
+}
+
+table tbody td .table-btn {
+    display: inline;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+table tbody td .edit {
+    background-color: #0d7f59;
+    &:hover {
+        background-color: #17a878;
+    }
+}
+table tbody td .danger {
+    background-color: #ba153b;
+    &:hover {
+        background-color: #dc244f;
+    }
+}
