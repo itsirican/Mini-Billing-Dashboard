@@ -97,8 +97,6 @@ Now the `mini_billing` database exists, ready for Laravel migrations.
 
 ---
 
-If you want, I can write the **next commands to run Laravel migrations and seed all tables safely**, so everything (admins, customers, invoices) is set up. Do you want me to do that?
-
 ### **4️⃣ Generate application key**
 
 ```bash
