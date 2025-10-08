@@ -15,7 +15,7 @@
     <div class="invoices-list">
       <div class="invoices-box">
         <h2>Invoices List</h2>
-        <a href="#" class="create-btn">New Invoice</a>
+        <a href="{{route('invoice.create')}}" class="create-btn">New Invoice</a>
       </div>
       <div class="table" id="customers_table">
         <section class="table__body">
@@ -23,27 +23,32 @@
             <thead>
               <tr>
                 <th>Id <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Invoice Titile <span class="icon-arrow">&UpArrow;</span></th>
                 <th>Customer <span class="icon-arrow">&UpArrow;</span></th>
-                <th>Location <span class="icon-arrow">&UpArrow;</span></th>
-                <th>Order Date <span class="icon-arrow">&UpArrow;</span></th>
-                <th>Status <span class="icon-arrow">&UpArrow;</span></th>
                 <th>Amount <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Status <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Date <span class="icon-arrow">&UpArrow;</span></th>
+                <th>Actions <span class="icon-arrow">&UpArrow;</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>1</td>
+                <td>Invoice Title</td>
                 <td>
                   <img src="{{asset('admin/upwork.jpg')}}" alt="" />Zinzu Chan Lee
                 </td>
-                <td>Seoul</td>
-                <td>17 Dec, 2022</td>
+                <td><strong> $128.90 </strong></td>
                 <td>
                   <p class="status delivered">Delivered</p>
                 </td>
-                <td><strong> $128.90 </strong></td>
+                <td>27 Aug, 2023</td>
+                <td>
+                  <a href="#" class="table-btn edit">Edit</a>
+                  <a href="#" class="table-btn danger">Delete</a>
+                </td>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td>2</td>
                 <td><img src="{{asset('admin/upwork.jpg')}}" alt="" /> Jeet Saru</td>
                 <td>Kathmandu</td>
@@ -164,7 +169,7 @@
                   <p class="status cancelled">Cancelled</p>
                 </td>
                 <td><strong>$249.99</strong></td>
-              </tr>
+              </tr> --}}
             </tbody>
           </table>
         </section>

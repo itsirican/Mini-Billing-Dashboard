@@ -259,3 +259,26 @@ thead th:hover {
 .custumers .create-btn:hover {
     background-color: #17a878;
 }
+
+.custumers table tbody td .table-btn {
+    display: inline;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.custumers table tbody td .edit {
+    background-color: #0d7f59;
+    &:hover {
+        background-color: #17a878;
+    }
+}
+.custumers table tbody td .danger {
+    background-color: #ba153b;
+    &:hover {
+        background-color: #dc244f;
+    }
+}
