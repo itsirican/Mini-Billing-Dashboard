@@ -9,15 +9,15 @@ An admin dashboard built with **Laravel** that allows business owners to manage 
 -   Manage Invoices (Create, Read, Update, Delete) with status (Paid, Unpaid, Pending).
 -   Dashboard with stats overview, charts, and latest records.
 -   Pagination for customers and invoices tables.
--   Simple and clean UI using Blade templates and optional Bootstrap.
+-   Simple and clean UI using Blade templates.
 
 ---
 
 ## **Tech Stack**
 
--   **Backend:** Laravel 10, PHP 8+
+-   **Backend:** Laravel latest, PHP 8+
 -   **Database:** MySQL
--   **Frontend:** Blade Templates, Bootstrap 5
+-   **Frontend:** Blade Templates, css
 -   **Other:** Laravel Eloquent, Factories & Seeders for fake data
 
 ---
