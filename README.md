@@ -66,7 +66,9 @@ Make sure MySQL is installed and the path is set (or navigate to MySQL folder, e
 ### **Step 2: Log in to MySQL with an empty password**
 
 ```powershell
-mysql -u root -p
+cd C:\xampp\mysql\bin
+.\mysql.exe -u root -p
+
 ```
 
 -   When prompted for a password, just press **Enter** (leave it empty).
