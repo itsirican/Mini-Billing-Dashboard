@@ -19,6 +19,9 @@
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    @media (max-width: 1048px) {
+        flex-direction: column;
+    }
 }
 
 /* start recent invoices table */
