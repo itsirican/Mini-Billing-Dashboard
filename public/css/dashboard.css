@@ -285,6 +285,7 @@ table tbody td .table-btn {
     border-radius: 10px;
     font-weight: 600;
     transition: 0.3s;
+    cursor: pointer;
 }
 table tbody td .edit {
     background-color: #0d7f59;

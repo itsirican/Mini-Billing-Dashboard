@@ -6,9 +6,9 @@
     <div class="overview">
       <h2>Overview</h2>
       <div class="boxes">
-        <x-card :stats="$stats['total_customers']" title="Total Custumers" src="admin/upwork.jpg" />
-        <x-card :stats="$stats['new_customers']" title="New Custumers" src="admin/upwork.jpg" />
-        <x-card :stats="$stats['pending_customers']" title="Pending Custumers" src="admin/upwork.jpg" />
+        <x-card :stats="$stats['total_customers']" title="Total Custumers" />
+        <x-card :stats="$stats['new_customers']" title="New Custumers" />
+        <x-card :stats="$stats['pending_customers']" title="Pending Custumers" />
         {{-- <x-card number="1597" title="Total Custumers" src="admin/upwork.jpg" /> --}}
       </div>
     </div>
@@ -60,6 +60,7 @@
           </table>
         </section>
       </div>
+      {{ $customers->links('pagination::bootstrap-5') }}
     </div>
   </div>
 </x-layout>

@@ -1,4 +1,4 @@
-@props(["src" => "admin/upwork.jpg", 'stats', 'title'])
+@props(["src" => "images/charts.jpg", 'stats', 'title'])
 @push('styles')
   <link rel="stylesheet" href="{{ asset('css/components/card.css') }}">
 @endpush

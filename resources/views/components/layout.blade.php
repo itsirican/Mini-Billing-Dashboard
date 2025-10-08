@@ -1,4 +1,9 @@
 @props(['title' => 'Home'])
+
+@php
+  $admin = Auth::guard('admin')->user();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,22 +56,25 @@
         </a>
       </li>
       <li @if ($title == 'settings') class="active" @endif>
-        <a href="{{route('settings')}}">
+        <a style="cursor: pointer" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
             <path
               d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
           </svg>
           <span>Logout</span>
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
       </li>
     </ul>
   </nav>
   <div>
     <div class="header" id="header">
       <div class="admin-box">
-        <img src="{{asset('admin/upwork.jpg')}}" alt="admin">
+        <img src="{{$admin && $admin->picture ? asset($admin->picture) : asset('customers/profile.png')}}" alt="admin">
         <div class="admin-infos">
-          <p>Justina Clark</p>
+          <p>{{$admin ? $admin->name : 'Admin'}}</p>
           <p>Admin</p>
         </div>
       </div>
